@@ -1,0 +1,6 @@
+skfuzzy as fuzz
+fuzz.membership
+fuzz.fuzzymath
+fuzz.defuzz
+fuzz.cluster (c-means)
+fuzz.filter

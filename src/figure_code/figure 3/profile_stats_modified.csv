@@ -1,0 +1,36 @@
+profile	signature	length	matches	entropy	EF
+6	----QEFMI-P-GA-----A-----E----L	31	39	54.5353371056	not identified
+7	-----------VGDEGGFAP------E---	31	33	57.4606883816	other acid/base-related EFs
+9	--------YP--SIED---E-D--------	31	46	62.5722865889	metal binding
+11	---I-----N--L-K-NQIGT-TE---A--	31	43	50.3551399409	alpha proton abstraction
+19	-----P---LLGG--RD-VP---YLF----	31	11	41.5015375791	not identified
+20	-E--VA-A-------GF---KLK-GVF-P-	31	10	38.8145530948	alpha proton abstraction
+33	-------VP---QSGD-RY-NVDKMI-K--P	31	6	42.9602036998	not identified
+40	-F----A-D-VQIKTPDLGG------A---C	31	8	36.2911317205	alpha proton abstraction
+42	-----A------L-KPG-G-DEG-MI--NEM	31	7	30.7166208015	not identified
+55	-Y-LLGG--R-----Y-H--G---------	31	20	51.1930362087	not identified
+56	-----A-G----R-Q-G-PG----------	31	4	39.1225562489	pKa control
+59	-R---G----L-HD-HER--P--A------	31	13	43.6010492572	metal binding
+64	----------D----GG------I---A--	31	170	69.0575638235	pKa control
+65	--E---VRTA-HGPGD-SPVG-AA--H-D-	31	14	39.6668390127	not identified
+66	A--H-D----NFGIQE-----------F--	31	11	49.5637379061	other acid/base-related EFs
+84	--------------K----G----------	31	165	75.8291495521	alpha proton abstraction
+81	--------GF---K-K-G------------	31	261	86.1633762389	alpha proton abstraction
+82	---------------D-N-------A----	31	606	81.4779814981	metal binding
+83	---------------E-P------------	31	849	94.1671728518	metal binding
+8	-------------D-AASEF----------	31	56	64.4511367834	metal binding
+36	--------Y-P--H-DVYG--G--------	31	14	49.3477406863	metal binding
+10	------------VGDDL-VTN-------I-	31	86	58.2630916968	metal binding
+38	--L---G---RL-ADEWCNT-ED-R-FA--	31	12	36.5321321947	metal binding
+24	-MA--------PLATNM-VT-F--------	31	20	52.4561875727	metal binding
+63	N---E---LI----ID-IR--VS--GGIT-A	31	22	38.4502392515	other acid/base-related EFs
+25	---------VDI-L-D-H-WGG-R----L-	31	20	49.942919178	pKa control
+41	C-----GA-LGG-CNETD-SAR-------A	31	14	35.5893816818	not identified
+14	--A--C-T-G-----HS---LGI-LA-M-H	31	24	39.6664232436	alpha proton abstraction
+15	M-H--A--P----A-D-HY--Q--------	31	22	45.2990794295	not identified
+46	-------------EQP--------------	31	248	81.6215817374	metal binding
+48	-------------N-K--K-GG---A----	31	228	72.1922195288	alpha proton abstraction
+78	----------P-A-GE--------------	31	167	80.2717388869	metal binding
+80	-I---A--------PH---------A----	31	128	77.2758708016	alpha proton abstraction
+23	-----------L-YLEDP--G---M--V--	31	10	52.9129595369	metal binding
+37	-------A-P--L--E-P-D------QI--M	31	6	46.6009217025	metal binding

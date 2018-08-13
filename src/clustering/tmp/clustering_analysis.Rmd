@@ -1,0 +1,23 @@
+---
+title: "CSA sites"
+date: "January 18, 2015"
+output: html_document
+---
+
+## Similarity (distances)
+
+```{r}
+library(data.table)
+f <- fread("similarity_graph.tab")
+g <- fread("similarity_graph_rand.tab")
+```
+
+
+```{r, echo=FALSE}
+hist(f$V5,  main="", xlab="pairwise similarity")
+```
+
+
+```{r, echo=FALSE}
+hist(g$V5,  main="", xlab="pairwise similarity (rand)")
+```
