@@ -1,0 +1,6 @@
+library(cluster)
+data <- read.table(file="dist_matrix")
+agn1 <- agnes(x=data, diss=TRUE, method="single")
+pdf("tree.pdf", paper="a4r", width=11, pointsize=8, height=7)
+plot(agn1, which.plots=2)
+dev.off()

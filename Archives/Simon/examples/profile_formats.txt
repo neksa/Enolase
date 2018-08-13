@@ -1,0 +1,12 @@
+
+There are two profile formats which I use:
+
+ prototype 1 -- is a count matrix of fixed length 50 + additional parameters used to obtain the matrix
+ prototype 2 -- is a frequency matrix. each matrix has an ID and number of sequences K. Fixed length 50
+ 
+It would be better to have the header "PROFILE" instead of "PROTOTYPE" in next versions.
+The length of profile should be flexible and could be specified explicitly in the header
+
+The file can contain several profiles. No additional header in the file.
+To say how many profiles are in the files one need to count profile headers.
+ 

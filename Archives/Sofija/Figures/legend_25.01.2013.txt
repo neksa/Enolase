@@ -1,0 +1,69 @@
+﻿Figure 1
+
+Profiles that are used in this work. Profiles are grouped by their positions in the barrel, denoted by the number of a beta-strand. A key residue (if known) is underlined in profile logo, and its elementary function is given under the logo together with the profile's id.
+
+
+
+Figure 2
+
+Most common EFLs on the barrel structure. EFLs are highlighted by different colors. Sequence profiles point to beta-strands that their EFLs are associated with. Residues that carry out an elementary function are underlined and this function is assigned to the profiles. The list under each profile shows subgroups where matches are found.
+
+
+
+Figure 3
+
+Graph representation of functional relations between families. Nodes represent families and profiles: blue ovals are families, diamons are profiles. Color of a profile node depends on an elementary function associated with the profile. Label on each profile node indicates this elementary function and profile's id. Number in a circle under each profile node indicates the position in the structure (by reffering to a number of a beta-strand in C terminal domain). The only profile that is not shown on the graph is 1054, since profiles 1051 and 1052 represent the same EFL. Edges denote sequence matches between profiles and families. Edge color repeats profile's color. Thickness of an edge depicts the coverage of the family by the profile. Only edges that cover more than 0.08 of a family are shown.
+
+
+
+Figure 4
+
+Graph representation of UniRef90 proteins clusering by the profiles. Diamond nodes represent profiles, and oval nodes represent protein sequences. Edges correspond to sequence matches between them. Protein nodes are colored by subgroups that they belong to in SFLD. Black nodes represent proteins that either are in SFLD but don't belong to any subgroup or are not in SFLD. Resulting clusters are partitioned into 5 connected components. Even though Component 2 and Component 3 are connected by 2 clusters of size 1, we do not combine them into 1 component, but place these clusters into either of these 2 components.
+
+
+
+Table 1
+
+Results of clustering of UniRef90 proteins by matches with the profiles. Only clusters of size bigger than 6 are shown. (Supplementary Table 3 displays all clusters.) Clusters are partitioned into 5 components that correspond to components in figure 4.
+
+
+
+_________________________________
+
+
+Table S1
+
+This table shows how many proteins in each subgroup have matches with the profiles. Numbers in parentheses represent percentages of proteins in a subgroup covered by a profile.
+
+
+
+Table S2
+
+This table shows how many proteins in each family have matches with the profiles. Numbers in parentheses represent percentages of proteins in a family covered by a profile.
+
+
+
+Table S3
+
+Full version of clustering results.
+
+
+Table S4
+List of protein sequences from UniRef90 that are not in SFLD. These proteins belong to some clusters in Figure 4. In addition to cluster profiles, other profiles that find matches in each of these sequences are also given.
+
+Table S5
+List of protein sequences from UniRef90 that are in SFLD but don't belong to any subgroup. These proteins belong to some clusters in Figure 4.
+
+Table S6
+List of protein sequences from UniRef90 that are not in SFLD. These sequences have matches only with profiles that were not used for clustering. (Matches with profile 103 are not given.)
+
+
+Figure S1
+
+Graph representation of proteins clustering.
+
+a) Only profiles that find matches in 1-2 subgroups are used for clustering.
+
+b) The same profiles are used for clustering. 3 additional profiles and pink edges represent matches with enolase predictor.
+
+

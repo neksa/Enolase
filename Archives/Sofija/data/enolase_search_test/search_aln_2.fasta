@@ -1,0 +1,56 @@
+>d1u0sy_ c.23.1.1 (Y:) CheY protein {Thermotoga maritima [TaxId: 2336]}
+ELKPDIVTMDITMPEMNGIDAIKEIMKIDPNAKIIVCS
+>d1p6qa_ c.23.1.1 (A:) CheY protein {Sinorhizobium meliloti, CheY2 [TaxId: 382]}
+QNPHHLVISDFNMPKMDGLGLLQAVRANPATKKAAFII
+>d1a04a2 c.23.1.1 (A:5-142) Nitrate/nitrite response regulator (NarL), receiver domain {Escherichia coli [TaxId: 562]}
+SLDPDLILLDLNMPGMNGLETLDKLREKSLSGRIVVFS
+>d1krwa_ c.23.1.1 (A:) NTRC receiver domain {Salmonella typhimurium [TaxId: 90371]}
+SKTPDVLLSDIRMPGMDGLALLKQIKQRHPMLPVIIMT
+>d1dbwa_ c.23.1.1 (A:) Transcriptional regulatory protein FixJ, receiver domain {Rhizobium meliloti [TaxId: 382]}
+DVRNGVLVTDLRMPDMSGVELLRNLGDLKINIPSIVIT
+>d1qkka_ c.23.1.1 (A:) Transcriptional regulatory protein DctD, receiver domain {Sinorhizobium meliloti [TaxId: 382]}
+ADFAGIVISDIRMPGMDGLALFRKILALDPDLPMILVT
+>d1dz3a_ c.23.1.1 (A:) Sporulation response regulator Spo0A {Bacillus stearothermophilus [TaxId: 1422]}
+EKRPDILLLDIIMPHLDGLAVLERIRAGFEHQPNVIML
+>d1peya_ c.23.1.1 (A:) Sporulation response regulator Spo0F {Bacillus subtilis [TaxId: 1423]}
+KERPDLVLLDMKIPGMDGIEILKRMKVIDENIRVIIMT
+>d1a2oa1 c.23.1.1 (A:1-140) Methylesterase CheB, N-terminal domain {Salmonella typhimurium [TaxId: 90371]}
+KFNPDVLTLDVEMPRMDGLDFLEKLMRLRPMPVVMVSS
+>d1kgsa2 c.23.1.1 (A:2-123) PhoB receiver domain {Thermotoga maritima [TaxId: 2336]}
+NEPFDVVILDIMLPVHDGWEILKSMRESGVNTPVLMLT
+>d1zesa1 c.23.1.1 (A:3-123) PhoB receiver domain {Escherichia coli [TaxId: 562]}
+EPWPDLILLDWMLPGGSGIQFIKHLKRESMTRDIPVVM
+>d1mvoa_ c.23.1.1 (A:) PhoP receiver domain {Bacillus subtilis [TaxId: 1423]}
+TEKPDLIVLDVMLPKLDGIEVCKQLRQQKLMFPILMLT
+>d2pl1a1 c.23.1.1 (A:1-119) PhoP receiver domain {Escherichia coli [TaxId: 562]}
+EHIPDIAIVDLGLPDEDGLSLIRRWRSNDVSLPILVLT
+>d1p2fa2 c.23.1.1 (A:1-120) Response regulator DrrB {Thermotoga maritima [TaxId: 2336]}
+EEAFHVVVLDVMLPDYSGYEICRMIKETRPETWVILLT
+>d1i3ca_ c.23.1.1 (A:) Response regulator for cyanobacterial phytochrome {Synechocystis sp. PCC 6803, RCP1 [TaxId: 1148]
+SPRPNLILLDLNLPKKDGREVLAEIKQNPDLKRIPVVV
+>d1k68a_ c.23.1.1 (A:) Response regulator for cyanobacterial phytochrome {Calothrix sp. pcc 7601, RcpA [TaxId: 1188]}
+ASRPDLILLDLNLPKKDGREVLAEIKSDPTLKRIPVVV
+>d1mb3a_ c.23.1.1 (A:) Cell division response regulator DivK {Caulobacter crescentus [TaxId: 155892]}
+ENKPDLILMDIQLPEISGLEVTKWLKEDDDLAHIPVVA
+>d2r25b1 c.23.1.1 (B:1087-1214) Response regulator Sin1 {Baker's yeast (Saccharomyces cerevisiae) [TaxId: 4932]}
+GENYNMIFMDVQMPKVDGLLSTKMIRRDLGYTSPIVAL
+>d2a9pa1 c.23.1.1 (A:2-118) DNA-binding response regulator MicA, N-terminal domain {Streptococcus pneumoniae [TaxId: 131
+AEQPDIIILDLMLPEIDGLEVAKTIRKTSSVPILMLSA
+>d1s8na_ c.23.1.1 (A:) Probable two-component system transcriptional regulator Rv1626 {Mycobacterium tuberculosis [TaxId
+LHKPDLVIMDVKMPRRDGIDAASEIASKRIAPIVVLTA
+>d1w25a1 c.23.1.1 (A:2-140) Response regulator PleD, receiver domain {Caulobacter crescentus [TaxId: 155892]}
+RDLPDIILLDVMMPGMDGFTVCRKLKDDPTTRHIPVVL
+>d2ayxa1 c.23.1.1 (A:817-949) Sensor kinase protein RcsC, C-terminal domain {Escherichia coli [TaxId: 562]}
+KNHIDIVLSDVNMPNMDGYRLTQRIRQLGLTLPVIGVT
+>d1yioa2 c.23.1.1 (A:3-130) Response regulatory protein StyR, N-terminal domain {Pseudomonas fluorescens [TaxId: 294]}
+PEQHGCLVLDMRMPGMSGIELQEQLTAISDGIPIVFIT
+>d1ys7a2 c.23.1.1 (A:7-127) Transcriptional regulatory protein PrrA, N-terminal domain {Mycobacterium tuberculosis [TaxI
+ENRPDAIVLDINMPVLDGVSVVTALRAMDNDVPVCVLS
+>d1zgza1 c.23.1.1 (A:2-121) TorCAD operon transcriptional regulator TorD, N-terminal domain {Escherichia coli [TaxId: 56
+NQSVDLILLDINLPDENGLMLTRALRERSTVGIILVTG
+>d1xhfa1 c.23.1.1 (A:2-122) Aerobic respiration control protein ArcA, N-terminal domain {Escherichia coli [TaxId: 562]}
+EYDINLVIMDINLPGKNGLLLARELREQANVALMFLTG
+>d1dcfa_ c.23.1.2 (A:) Receiver domain of the ethylene receptor {Thale cress (Arabidopsis thaliana) [TaxId: 3702]}
+SHEHKVVFMDVCMPGVENYQIALRIHEKFTKQRHQRPL
+>d2gmna1 d.157.1.1 (A:29-292) Zn metallo-beta-lactamase {Bradyrhizobium japonicum [TaxId: 375]}
+KTSQGLILMDTAMPQSTGMIKDNIAKLGFKVADIKLIL
