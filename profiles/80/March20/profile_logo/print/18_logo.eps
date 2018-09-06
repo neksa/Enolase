@@ -1,0 +1,1522 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title:        Sequence Logo: 
+%%Creator:      
+%%CreationDate: 2013-03-21 17:48:29.140606
+%%BoundingBox:  0  0  462  98 
+%%Pages: 0
+%%DocumentFonts: 
+%%EndComments
+
+
+% ---- VARIABLES ----
+
+/True   true def
+/False  false def
+
+/debug              False        def
+
+/logo_height        98  def
+/logo_width         462  def
+/logo_title         () def
+/show_title         False def
+
+/logo_margin        0.5 def
+/xaxis_label_height 0.0 def
+/title_height       0 def
+/stroke_width       0.5 def
+/tic_length         5 def
+
+/lines_per_logo     1 def
+/line_width         461.2 def
+/line_height        97.0 def
+/line_margin_left   30.0 def
+/line_margin_right  10 def
+/line_margin_bottom 12.0 def
+/line_margin_top    4 def
+
+/stack_width         16.2 def
+/stack_height        81.0 def
+/stacks_per_line     26 def
+/stack_margin        0.5 def
+
+/show_yaxis             True def      
+/show_yaxis_label       True def
+/yaxis_label            (bits) def
+/yaxis_scale          4.80735492206 def              % height in units 
+/yaxis_tic_interval     1.0 def           % in units
+/yaxis_minor_tic_interval 0.2 def   % in units
+
+/show_xaxis_label       False def             % True or False
+/show_xaxis             True def                   % True or False
+/xaxis_label            () def
+/xaxis_tic_interval     1 def
+/rotate_numbers         False def               % True or False
+/number_interval        5 def
+/show_ends              False def          
+/end_type               (-) def          % d: DNA, p: PROTEIN, -: none
+
+/show_fineprint         False def
+/fineprint              (WebLogo 3.3) def
+/logo_label             () def
+
+/show_boxes             False def    % True or False
+/shrink                 false def    % True or False
+/shrink_fraction        0.5 def               
+
+/show_errorbars         False def      % True or False
+/errorbar_fraction      0.9 def
+/errorbar_width_fraction  0.25 def
+/errorbar_gray          0.75 def
+
+/fontsize               10 def
+/small_fontsize         6 def
+/title_fontsize         12 def
+/number_fontsize        8 def
+
+
+/UseCIEColor true def       % Fix for issue 4
+/default_color [ 0.0 0.0 0.0 ] def 
+/color_dict << 
+  (G) [ 0.0 0.501960784314 0.0 ]
+  (S) [ 0.0 0.501960784314 0.0 ]
+  (T) [ 0.0 0.501960784314 0.0 ]
+  (Y) [ 0.0 0.501960784314 0.0 ]
+  (C) [ 0.0 0.501960784314 0.0 ]
+  (N) [ 0.501960784314 0.0 0.501960784314 ]
+  (Q) [ 0.501960784314 0.0 0.501960784314 ]
+  (K) [ 0.0 0.0 1.0 ]
+  (R) [ 0.0 0.0 1.0 ]
+  (H) [ 0.0 0.0 1.0 ]
+  (D) [ 1.0 0.0 0.0 ]
+  (E) [ 1.0 0.0 0.0 ]
+  (P) [ 0.0 0.0 0.0 ]
+  (A) [ 0.0 0.0 0.0 ]
+  (W) [ 0.0 0.0 0.0 ]
+  (F) [ 0.0 0.0 0.0 ]
+  (L) [ 0.0 0.0 0.0 ]
+  (I) [ 0.0 0.0 0.0 ]
+  (M) [ 0.0 0.0 0.0 ]
+  (V) [ 0.0 0.0 0.0 ]
+>> def
+
+
+
+% ---- DERIVED PARAMETERS ----
+
+/char_width stack_width 2 stack_margin mul sub def
+/char_width2 char_width 2 div def
+/char_width4 char_width 4 div def
+
+% movements to place 5'/N and 3'/C symbols
+/leftEndDeltaX  fontsize neg         def
+/leftEndDeltaY  fontsize 1.25 mul neg def
+/rightEndDeltaX fontsize 0.25 mul     def
+/rightEndDeltaY leftEndDeltaY        def
+
+
+% ---- PROCEDURES ----
+
+
+/SetTitleFont {/ArialMT findfont title_fontsize scalefont setfont} bind def
+/SetLogoFont  {/Arial-BoldMT findfont char_width  scalefont setfont} bind def
+/SetStringFont{/ArialMT findfont fontsize scalefont setfont} bind def
+/SetPrimeFont {/Symbol findfont fontsize scalefont setfont} bind def
+/SetSmallFont {/ArialMT findfont small_fontsize scalefont setfont} bind def
+/SetNumberFont {/ArialMT findfont number_fontsize scalefont setfont} bind def
+
+/DrawBox { % width height 
+    /hh exch def
+    /ww exch def
+    gsave
+        0.2 setlinewidth
+        %0.5 setgray
+        
+        %0 0 moveto 
+        hh 0 rlineto
+        0 ww rlineto
+        hh neg 0 rlineto
+        0 ww neg rlineto
+        stroke
+    grestore
+} bind def
+
+
+/StartLogo { 
+  %save 
+  gsave 
+
+  
+  debug { 
+    logo_margin logo_margin moveto
+    logo_height logo_margin 2 mul sub
+    logo_width logo_margin 2 mul sub
+    DrawBox } if
+    
+  show_title { DrawTitle } if
+  show_xaxis_label { DrawXaxisLable } if
+  show_fineprint { DrawFineprint } if
+  DrawLogoLabel
+  
+  
+  MoveToFirstLine
+} bind def
+
+
+/DrawLogoLabel {
+  gsave 
+    SetTitleFont
+    
+    logo_margin
+    logo_height title_fontsize sub logo_margin sub
+    moveto
+    
+    debug { title_fontsize logo_label stringwidth pop DrawBox } if
+    0 title_fontsize 4 div rmoveto % Move up to baseline (approximatly)
+    logo_label show
+    
+  grestore
+} bind def
+
+/DrawTitle {
+  gsave 
+    SetTitleFont
+    
+    logo_width 2 div logo_title stringwidth pop 2 div sub 
+    logo_height title_fontsize sub logo_margin sub
+    moveto
+    
+    debug { title_fontsize logo_title stringwidth pop DrawBox } if
+    
+    0 title_fontsize 4 div rmoveto % Move up to baseline (approximatly)
+    logo_title show
+    
+  grestore
+} bind def
+
+/DrawXaxisLable {
+  % Print X-axis label, bottom center
+  gsave
+    SetStringFont
+
+    logo_width 2 div xaxis_label stringwidth pop 2 div sub
+    xaxis_label_height logo_margin add fontsize sub
+    moveto
+    %fontsize 3 div
+    
+    debug { fontsize xaxis_label stringwidth pop DrawBox } if
+
+    xaxis_label show
+
+  grestore
+} bind def
+
+
+/DrawFineprint {
+    gsave
+    
+    SetSmallFont
+
+    logo_width fineprint stringwidth pop sub 
+        logo_margin sub line_margin_right sub
+    logo_margin 
+    moveto
+    
+    debug { small_fontsize fineprint stringwidth pop DrawBox } if
+        
+    fineprint show
+    grestore
+} bind def
+
+/MoveToFirstLine {
+    logo_margin 
+    logo_height logo_margin sub title_height sub line_height sub
+    moveto
+} bind def
+
+/EndLogo { 
+  grestore 
+  %showpage 
+  %restore 
+} bind def
+
+
+/StartLine{ 
+    gsave 
+  
+    % Draw outer box
+    debug { line_height line_width DrawBox } if  
+
+    % Move to lower left corner of content area
+    line_margin_left line_margin_bottom rmoveto
+
+    % Draw inner content box
+    debug { 
+        line_height line_margin_bottom sub line_margin_top sub
+        line_width line_margin_left sub line_margin_right sub
+        DrawBox
+    } if  
+  
+    show_yaxis { DrawYaxis } if
+    show_xaxis { DrawLeftEnd } if
+    
+} bind def
+
+/EndLine{ 
+    show_xaxis { DrawRightEnd } if
+    grestore 
+    0 line_height neg rmoveto 
+} bind def
+
+
+/DrawYaxis {
+  gsave    
+    stack_margin neg 0 translate
+    DrawYaxisBar
+    DrawYaxisLabel
+  grestore
+} bind def
+
+
+/DrawYaxisBar { 
+  gsave  
+    stack_margin neg 0 rmoveto
+    
+    SetNumberFont
+    stroke_width setlinewidth
+    
+    /str 10 string def % string to hold number  
+    /smallgap stack_margin  def
+
+    % Draw first tic and bar
+    gsave    
+      tic_length neg 0 rmoveto 
+      tic_length 0 rlineto 
+      0 stack_height rlineto
+      stroke
+    grestore
+
+    % Draw the tics
+    % initial increment limit proc for
+    0 yaxis_tic_interval yaxis_scale abs 
+    {/loopnumber exch def
+
+      % convert the number coming from the loop to a string
+      % and find its width
+      loopnumber 10 str cvrs
+      /stringnumber exch def % string representing the number
+
+      stringnumber stringwidth pop
+      /numberwidth exch def % width of number to show
+
+      /halfnumberheight
+         stringnumber CharBoxHeight 2 div
+      def
+
+      gsave
+        numberwidth % move back width of number
+        neg loopnumber stack_height yaxis_scale div mul % shift on y axis
+        halfnumberheight sub % down half the digit
+        rmoveto % move back the width of the string
+
+        tic_length neg smallgap sub % Move back a bit more  
+        0 rmoveto % move back the width of the tic  
+
+        stringnumber show
+        smallgap 0 rmoveto % Make a small gap  
+
+        % now show the tic mark
+        0 halfnumberheight rmoveto % shift up again
+        tic_length 0 rlineto
+        stroke
+     grestore
+    } for
+    
+    % Draw the minor tics
+    % initial increment limit proc for
+    0 yaxis_minor_tic_interval yaxis_scale abs 
+    {/loopnumber2 exch def
+      gsave
+        0
+        loopnumber2 stack_height yaxis_scale div mul 
+        rmoveto 
+
+        tic_length 2 div neg 0 rlineto
+        stroke
+     grestore
+    } for    
+    
+  grestore
+} bind def
+
+/DrawYaxisLabel {
+  gsave
+    SetStringFont
+
+    % How far we move left depends on the size of
+    % the tic labels.
+    /str 10 string def % string to hold number  
+    yaxis_scale yaxis_tic_interval div cvi yaxis_tic_interval mul 
+    str cvs stringwidth pop
+    tic_length 1.25 mul  add neg  
+
+    stack_height
+    yaxis_label stringwidth pop
+    sub 2 div
+
+    rmoveto
+    90 rotate
+    
+    yaxis_label show
+  grestore
+} bind def
+
+
+%Take a single character and return the bounding box
+/CharBox { % <char> CharBox <lx> <ly> <ux> <uy>
+  gsave
+    newpath
+    0 0 moveto
+    % take the character off the stack and use it here:
+    true charpath 
+    flattenpath 
+    pathbbox % compute bounding box of 1 pt. char => lx ly ux uy
+    % the path is here, but toss it away ...
+  grestore
+} bind def
+
+
+% The height of a characters bounding box
+/CharBoxHeight { % <char> CharBoxHeight <num>
+  CharBox
+  exch pop sub neg exch pop
+} bind def
+
+
+% The width of a characters bounding box
+/CharBoxWidth { % <char> CharBoxHeight <num>
+  CharBox
+  pop exch pop sub neg 
+} bind def
+
+
+/DrawLeftEnd {
+  gsave
+    SetStringFont
+    leftEndDeltaX leftEndDeltaY rmoveto
+    
+    show_ends {
+        debug { leftEndDeltaY neg leftEndDeltaX neg DrawBox } if
+        end_type (d) eq {(5) show DrawPrime} if
+        end_type (p) eq {(N) show} if
+    } if
+  grestore
+} bind def
+
+/DrawRightEnd { 
+  gsave
+    SetStringFont
+    rightEndDeltaX rightEndDeltaY rmoveto
+    
+    show_ends {
+        debug { rightEndDeltaY neg leftEndDeltaX neg  DrawBox } if
+        end_type (d) eq {(3) show DrawPrime} if
+        end_type (p) eq {(C) show} if
+    } if
+  grestore
+} bind def
+
+/DrawPrime {
+  gsave
+    SetPrimeFont
+    (\242) show 
+  grestore
+} bind def
+
+
+/StartStack {  % <stackNumber> startstack
+  show_xaxis {DrawNumber}{pop} ifelse
+  gsave
+  debug { stack_height stack_width DrawBox } if
+    
+} bind def
+
+/EndStack {
+  grestore
+  stack_width 0 rmoveto
+} bind def
+
+
+/DrawNumber { % number MakeNumber
+    /n exch def
+    
+    
+  gsave
+    %0 stack_margin neg rmoveto
+    stroke_width setlinewidth
+    stack_width  0 rlineto
+    stack_width 2 div neg 0 rmoveto
+    
+    n () eq 
+    {  0 tic_length 4 div neg rlineto  } 
+    { 0 tic_length 2 div neg rlineto } 
+    ifelse
+
+    stroke
+  grestore   
+
+
+
+  gsave
+    n
+    SetNumberFont
+    stack_width 2 div tic_length 2 div neg rmoveto 
+
+    rotate_numbers {
+        90 rotate     
+        dup stringwidth pop neg % find the length of the number
+        stack_margin sub        % Move down a bit
+        (0) CharBoxHeight 2 div neg % left half height of numbers
+        rmoveto 
+        show
+    } {
+        dup stringwidth pop neg 2 div number_fontsize neg  rmoveto
+        show
+    } ifelse
+    
+    
+
+  grestore
+} bind def
+
+
+
+% Draw a character whose height is proportional to symbol bits
+/ShowSymbol{ % interval character ShowSymbol
+    /char exch def
+    /interval exch def
+    /fraction_width exch def
+    
+    /char_height 
+       interval yaxis_scale div stack_height mul
+       stack_margin sub
+       dup 
+       % if char_height is negative or very small replace with zero 
+       % BUG FIX: This used to be '0.0 gt' but it seems that DrawHeight
+       % has a finite, non-zero minimum, which results in a rangecheck error
+       0.01 gt {}{pop 0.0} ifelse 
+    def 
+
+    char_height 0.0 gt {
+        show_boxes {
+            gsave
+                /ww char_height stack_margin add def
+                /hh stack_width def
+                stroke_width setlinewidth
+                hh 0 rlineto
+                0 ww rlineto
+                hh neg 0 rlineto
+                0 ww neg rlineto
+                stroke
+            grestore     
+        } if
+
+        gsave
+            stack_margin stack_margin rmoveto
+            debug { char_height char_width DrawBox } if
+            1 fraction_width sub char_width mul 2 div  0 rmoveto
+            fraction_width char_width mul char_height char DrawChar
+        grestore
+        
+    } if
+    0 interval yaxis_scale div stack_height mul rmoveto
+} bind def
+
+
+/DrawChar { % <width> <height> <char> ShowChar
+    /tc exch def    % The character
+    /ysize exch def % the y size of the character
+    /xsize exch def % the x size of the character
+    /xmulfactor 1 def 
+    /ymulfactor 1 def
+    
+    gsave
+        SetLogoFont    
+        tc SetColor
+
+        % IReplacementHack
+        % Deal with the lack of bars on the letter 'I' in Arial and Helvetica
+        % by replacing with 'I' from Courier.
+        tc (I) eq {
+            /Courier findfont char_width  scalefont setfont    
+        } if
+
+
+        shrink {
+            xsize 1 shrink_fraction sub 2 div mul
+            ysize 1 shrink_fraction sub 2 div mul rmoveto 
+            shrink_fraction shrink_fraction scale
+        } if
+        
+        % Calculate the font scaling factors
+        % Loop twice to catch small correction due to first scaling
+        2 {
+            gsave
+            xmulfactor ymulfactor scale
+      
+            ysize % desired size of character in points
+            tc CharBoxHeight 
+            dup 0.0 ne {
+                div % factor by which to scale up the character
+                /ymulfactor exch def
+            } {pop pop} ifelse
+
+            xsize % desired size of character in points
+            tc CharBoxWidth  
+            dup 0.0 ne {
+                div % factor by which to scale up the character
+                /xmulfactor exch def
+            } {pop pop} ifelse
+            grestore
+        } repeat
+
+
+  
+        % Draw the character
+        xmulfactor ymulfactor scale
+        % Move lower left corner of character to start point
+        tc CharBox pop pop % llx lly : Lower left corner
+        exch neg exch neg
+        rmoveto
+        
+        tc show    
+
+    grestore
+} bind def
+
+/SetColor{ % <char> SetColor
+  dup color_dict exch known {
+    color_dict exch get aload pop setrgbcolor
+  } {
+    pop
+    default_color aload pop setrgbcolor
+  } ifelse 
+} bind def
+
+
+/DrawErrorbar{ % interval_down interval_up DrawErrorbar
+    
+    gsave
+    /points_per_unit stack_height yaxis_scale div def 
+    /height_up   exch points_per_unit mul def 
+    /height_down exch points_per_unit mul def
+    
+    show_errorbars {
+    
+    stroke_width setlinewidth
+    errorbar_gray setgray     
+    stack_width 2 div 0 rmoveto
+    
+    /errorbar_width char_width errorbar_width_fraction mul def
+    /errorbar_width2 errorbar_width 2 div def
+    
+    gsave 
+        0 height_down neg rmoveto
+        errorbar_width2 neg 0 rlineto
+        errorbar_width 0 rlineto
+        errorbar_width2 neg 0 rlineto
+        0 height_down errorbar_fraction mul rlineto 
+        stroke
+    grestore
+
+    gsave 
+        0 height_up  rmoveto
+        errorbar_width2 neg 0 rlineto
+        errorbar_width 0 rlineto
+        errorbar_width2 neg 0 rlineto
+        0 height_up neg errorbar_fraction mul rlineto 
+        stroke
+    grestore
+    } if
+           
+    grestore
+    
+} bind def
+
+/DrawErrorbarFirst{ % interval_down interval_up center DrawErrorbarFirst
+    gsave
+    /points_per_unit stack_height yaxis_scale div def 
+    /center   exch points_per_unit mul def 
+
+    0 center rmoveto
+    DrawErrorbar
+    grestore
+} bind def
+
+%%EndProlog
+
+%%Page: 1 1
+
+% Example Data
+%StartLogo
+%    StartLine
+%        (1) StartStack
+%            1.2 (C) ShowSymbol
+%            2.2 (I) ShowSymbol
+%            0.5 0.5 DrawErrorbar
+%        EndStack
+%        (2) StartStack
+%            0.5 (I) ShowSymbol
+%            0.9 (L) ShowSymbol
+%            1.0 (G) ShowSymbol
+%            
+%            0.5 0.5 DrawErrorbar        
+%        EndStack
+%        (234) StartStack
+%        EndStack
+%        (235) StartStack
+%        EndStack
+%    EndLine
+%EndLogo
+
+StartLogo
+
+StartLine
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.026768 (M) ShowSymbol
+ 0.997076 0.026768 (C) ShowSymbol
+ 0.997076 0.035691 (F) ShowSymbol
+ 0.997076 0.044614 (R) ShowSymbol
+ 0.997076 0.053536 (S) ShowSymbol
+ 0.997076 0.115996 (T) ShowSymbol
+ 0.997076 0.133841 (L) ShowSymbol
+ 0.997076 0.142764 (V) ShowSymbol
+ 0.997076 0.151687 (G) ShowSymbol
+ 0.997076 0.160609 (I) ShowSymbol
+ 0.997076 2.150381 (A) ShowSymbol
+ 0.212191 0.212191 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.991228 0.000000 (Z) ShowSymbol
+ 0.991228 0.000000 (X) ShowSymbol
+ 0.991228 0.000000 (U) ShowSymbol
+ 0.991228 0.000000 (O) ShowSymbol
+ 0.991228 0.000000 (J) ShowSymbol
+ 0.991228 0.000000 (E) ShowSymbol
+ 0.991228 0.000000 (D) ShowSymbol
+ 0.991228 0.000000 (B) ShowSymbol
+ 0.991228 0.000000 (-) ShowSymbol
+ 0.991228 0.000000 (*) ShowSymbol
+ 0.991228 0.009965 (T) ShowSymbol
+ 0.991228 0.009965 (S) ShowSymbol
+ 0.991228 0.009965 (H) ShowSymbol
+ 0.991228 0.009965 (G) ShowSymbol
+ 0.991228 0.009965 (C) ShowSymbol
+ 0.991228 0.014947 (W) ShowSymbol
+ 0.991228 0.014947 (P) ShowSymbol
+ 0.991228 0.014947 (N) ShowSymbol
+ 0.991228 0.029894 (Q) ShowSymbol
+ 0.991228 0.049824 (Y) ShowSymbol
+ 0.991228 0.054806 (A) ShowSymbol
+ 0.991228 0.059789 (F) ShowSymbol
+ 0.991228 0.094665 (R) ShowSymbol
+ 0.991228 0.104630 (V) ShowSymbol
+ 0.991228 0.104630 (M) ShowSymbol
+ 0.991228 0.308907 (L) ShowSymbol
+ 0.991228 0.378661 (K) ShowSymbol
+ 0.991228 0.408555 (I) ShowSymbol
+ 0.150532 0.150532 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (L) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (I) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.008493 (V) ShowSymbol
+ 0.997076 0.008493 (M) ShowSymbol
+ 0.997076 0.016986 (F) ShowSymbol
+ 0.997076 0.016986 (E) ShowSymbol
+ 0.997076 0.042465 (W) ShowSymbol
+ 0.997076 0.050958 (T) ShowSymbol
+ 0.997076 0.076438 (C) ShowSymbol
+ 0.997076 0.084931 (N) ShowSymbol
+ 0.997076 0.212327 (G) ShowSymbol
+ 0.997076 0.900265 (A) ShowSymbol
+ 0.997076 1.477793 (S) ShowSymbol
+ 0.164471 0.164471 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (F) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.009222 (M) ShowSymbol
+ 0.997076 0.009222 (H) ShowSymbol
+ 0.997076 0.018443 (W) ShowSymbol
+ 0.997076 0.018443 (T) ShowSymbol
+ 0.997076 0.018443 (I) ShowSymbol
+ 0.997076 0.027665 (V) ShowSymbol
+ 0.997076 0.027665 (C) ShowSymbol
+ 0.997076 0.046108 (L) ShowSymbol
+ 0.997076 0.055329 (S) ShowSymbol
+ 0.997076 0.129102 (P) ShowSymbol
+ 0.997076 0.977485 (G) ShowSymbol
+ 0.997076 1.807424 (A) ShowSymbol
+ 0.171693 0.171693 DrawErrorbar
+EndStack
+
+(5) StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (S) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (G) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.008756 (T) ShowSymbol
+ 0.997076 0.008756 (C) ShowSymbol
+ 0.997076 0.008756 (A) ShowSymbol
+ 0.997076 0.140103 (F) ShowSymbol
+ 0.997076 0.691758 (L) ShowSymbol
+ 0.997076 0.858130 (V) ShowSymbol
+ 0.997076 1.269682 (I) ShowSymbol
+ 0.101940 0.101940 DrawErrorbar
+EndStack
+
+() StartStack
+ 1.000000 0.000000 (Z) ShowSymbol
+ 1.000000 0.000000 (Y) ShowSymbol
+ 1.000000 0.000000 (X) ShowSymbol
+ 1.000000 0.000000 (W) ShowSymbol
+ 1.000000 0.000000 (U) ShowSymbol
+ 1.000000 0.000000 (T) ShowSymbol
+ 1.000000 0.000000 (R) ShowSymbol
+ 1.000000 0.000000 (P) ShowSymbol
+ 1.000000 0.000000 (O) ShowSymbol
+ 1.000000 0.000000 (M) ShowSymbol
+ 1.000000 0.000000 (L) ShowSymbol
+ 1.000000 0.000000 (K) ShowSymbol
+ 1.000000 0.000000 (J) ShowSymbol
+ 1.000000 0.000000 (I) ShowSymbol
+ 1.000000 0.000000 (H) ShowSymbol
+ 1.000000 0.000000 (G) ShowSymbol
+ 1.000000 0.000000 (F) ShowSymbol
+ 1.000000 0.000000 (C) ShowSymbol
+ 1.000000 0.000000 (B) ShowSymbol
+ 1.000000 0.000000 (A) ShowSymbol
+ 1.000000 0.000000 (-) ShowSymbol
+ 1.000000 0.000000 (*) ShowSymbol
+ 1.000000 0.020963 (V) ShowSymbol
+ 1.000000 0.031444 (S) ShowSymbol
+ 1.000000 0.031444 (Q) ShowSymbol
+ 1.000000 0.073370 (N) ShowSymbol
+ 1.000000 1.111039 (E) ShowSymbol
+ 1.000000 2.316411 (D) ShowSymbol
+ 0.131294 0.131294 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.985380 0.000000 (Z) ShowSymbol
+ 0.985380 0.000000 (X) ShowSymbol
+ 0.985380 0.000000 (U) ShowSymbol
+ 0.985380 0.000000 (R) ShowSymbol
+ 0.985380 0.000000 (O) ShowSymbol
+ 0.985380 0.000000 (K) ShowSymbol
+ 0.985380 0.000000 (J) ShowSymbol
+ 0.985380 0.000000 (D) ShowSymbol
+ 0.985380 0.000000 (B) ShowSymbol
+ 0.985380 0.000000 (-) ShowSymbol
+ 0.985380 0.000000 (*) ShowSymbol
+ 0.985380 0.005564 (Y) ShowSymbol
+ 0.985380 0.005564 (W) ShowSymbol
+ 0.985380 0.005564 (H) ShowSymbol
+ 0.985380 0.005564 (E) ShowSymbol
+ 0.985380 0.011129 (P) ShowSymbol
+ 0.985380 0.022258 (G) ShowSymbol
+ 0.985380 0.027822 (F) ShowSymbol
+ 0.985380 0.033386 (S) ShowSymbol
+ 0.985380 0.038951 (N) ShowSymbol
+ 0.985380 0.050080 (A) ShowSymbol
+ 0.985380 0.083466 (C) ShowSymbol
+ 0.985380 0.100159 (Q) ShowSymbol
+ 0.985380 0.122417 (L) ShowSymbol
+ 0.985380 0.133546 (T) ShowSymbol
+ 0.985380 0.178061 (V) ShowSymbol
+ 0.985380 0.400638 (M) ShowSymbol
+ 0.985380 0.651036 (I) ShowSymbol
+ 0.159804 0.159804 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (V) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (S) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (L) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (I) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (F) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.013775 (T) ShowSymbol
+ 0.997076 0.013775 (G) ShowSymbol
+ 0.997076 0.013775 (C) ShowSymbol
+ 0.997076 4.655790 (A) ShowSymbol
+ 0.092078 0.092078 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (T) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (G) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.009468 (W) ShowSymbol
+ 0.997076 0.018936 (S) ShowSymbol
+ 0.997076 0.047339 (A) ShowSymbol
+ 0.997076 0.066274 (I) ShowSymbol
+ 0.997076 0.104145 (F) ShowSymbol
+ 0.997076 0.123081 (M) ShowSymbol
+ 0.997076 0.170420 (V) ShowSymbol
+ 0.997076 0.416582 (C) ShowSymbol
+ 0.997076 2.272264 (L) ShowSymbol
+ 0.187962 0.187962 DrawErrorbar
+EndStack
+
+(10) StartStack
+ 0.991228 0.000000 (Z) ShowSymbol
+ 0.991228 0.000000 (X) ShowSymbol
+ 0.991228 0.000000 (U) ShowSymbol
+ 0.991228 0.000000 (R) ShowSymbol
+ 0.991228 0.000000 (Q) ShowSymbol
+ 0.991228 0.000000 (P) ShowSymbol
+ 0.991228 0.000000 (O) ShowSymbol
+ 0.991228 0.000000 (K) ShowSymbol
+ 0.991228 0.000000 (J) ShowSymbol
+ 0.991228 0.000000 (G) ShowSymbol
+ 0.991228 0.000000 (E) ShowSymbol
+ 0.991228 0.000000 (D) ShowSymbol
+ 0.991228 0.000000 (C) ShowSymbol
+ 0.991228 0.000000 (B) ShowSymbol
+ 0.991228 0.000000 (A) ShowSymbol
+ 0.991228 0.000000 (-) ShowSymbol
+ 0.991228 0.000000 (*) ShowSymbol
+ 0.991228 0.009854 (T) ShowSymbol
+ 0.991228 0.009854 (I) ShowSymbol
+ 0.991228 0.019708 (S) ShowSymbol
+ 0.991228 0.019708 (M) ShowSymbol
+ 0.991228 0.029563 (V) ShowSymbol
+ 0.991228 0.039417 (N) ShowSymbol
+ 0.991228 0.059125 (F) ShowSymbol
+ 0.991228 0.206938 (Y) ShowSymbol
+ 0.991228 0.206938 (H) ShowSymbol
+ 0.991228 0.246354 (L) ShowSymbol
+ 0.991228 2.493105 (W) ShowSymbol
+ 0.199716 0.199716 DrawErrorbar
+EndStack
+
+() StartStack
+ 1.000000 0.000000 (Z) ShowSymbol
+ 1.000000 0.000000 (Y) ShowSymbol
+ 1.000000 0.000000 (X) ShowSymbol
+ 1.000000 0.000000 (W) ShowSymbol
+ 1.000000 0.000000 (V) ShowSymbol
+ 1.000000 0.000000 (U) ShowSymbol
+ 1.000000 0.000000 (T) ShowSymbol
+ 1.000000 0.000000 (S) ShowSymbol
+ 1.000000 0.000000 (R) ShowSymbol
+ 1.000000 0.000000 (Q) ShowSymbol
+ 1.000000 0.000000 (P) ShowSymbol
+ 1.000000 0.000000 (O) ShowSymbol
+ 1.000000 0.000000 (N) ShowSymbol
+ 1.000000 0.000000 (M) ShowSymbol
+ 1.000000 0.000000 (L) ShowSymbol
+ 1.000000 0.000000 (K) ShowSymbol
+ 1.000000 0.000000 (J) ShowSymbol
+ 1.000000 0.000000 (I) ShowSymbol
+ 1.000000 0.000000 (H) ShowSymbol
+ 1.000000 0.000000 (G) ShowSymbol
+ 1.000000 0.000000 (F) ShowSymbol
+ 1.000000 0.000000 (E) ShowSymbol
+ 1.000000 0.000000 (C) ShowSymbol
+ 1.000000 0.000000 (B) ShowSymbol
+ 1.000000 0.000000 (A) ShowSymbol
+ 1.000000 0.000000 (-) ShowSymbol
+ 1.000000 0.000000 (*) ShowSymbol
+ 1.000000 4.777519 (D) ShowSymbol
+ 0.051703 0.029836 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (S) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (C) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.008943 (T) ShowSymbol
+ 0.997076 0.008943 (Q) ShowSymbol
+ 0.997076 0.008943 (F) ShowSymbol
+ 0.997076 0.017886 (G) ShowSymbol
+ 0.997076 0.053657 (W) ShowSymbol
+ 0.997076 0.080486 (V) ShowSymbol
+ 0.997076 0.321945 (A) ShowSymbol
+ 0.997076 1.234122 (I) ShowSymbol
+ 0.997076 1.314609 (L) ShowSymbol
+ 0.135837 0.135837 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.003971 (G) ShowSymbol
+ 0.997076 0.011912 (N) ShowSymbol
+ 0.997076 0.011912 (H) ShowSymbol
+ 0.997076 0.019854 (S) ShowSymbol
+ 0.997076 0.031766 (T) ShowSymbol
+ 0.997076 0.031766 (M) ShowSymbol
+ 0.997076 0.031766 (E) ShowSymbol
+ 0.997076 0.035737 (W) ShowSymbol
+ 0.997076 0.035737 (C) ShowSymbol
+ 0.997076 0.047649 (Q) ShowSymbol
+ 0.997076 0.055591 (Y) ShowSymbol
+ 0.997076 0.059561 (I) ShowSymbol
+ 0.997076 0.071474 (V) ShowSymbol
+ 0.997076 0.075444 (F) ShowSymbol
+ 0.997076 0.079415 (R) ShowSymbol
+ 0.997076 0.194567 (A) ShowSymbol
+ 0.997076 0.234275 (L) ShowSymbol
+ 0.997076 0.321632 (K) ShowSymbol
+ 0.138241 0.138241 DrawErrorbar
+EndStack
+
+() StartStack
+ 1.000000 0.000000 (Z) ShowSymbol
+ 1.000000 0.000000 (Y) ShowSymbol
+ 1.000000 0.000000 (X) ShowSymbol
+ 1.000000 0.000000 (W) ShowSymbol
+ 1.000000 0.000000 (V) ShowSymbol
+ 1.000000 0.000000 (U) ShowSymbol
+ 1.000000 0.000000 (T) ShowSymbol
+ 1.000000 0.000000 (R) ShowSymbol
+ 1.000000 0.000000 (Q) ShowSymbol
+ 1.000000 0.000000 (P) ShowSymbol
+ 1.000000 0.000000 (O) ShowSymbol
+ 1.000000 0.000000 (N) ShowSymbol
+ 1.000000 0.000000 (M) ShowSymbol
+ 1.000000 0.000000 (L) ShowSymbol
+ 1.000000 0.000000 (K) ShowSymbol
+ 1.000000 0.000000 (J) ShowSymbol
+ 1.000000 0.000000 (I) ShowSymbol
+ 1.000000 0.000000 (H) ShowSymbol
+ 1.000000 0.000000 (F) ShowSymbol
+ 1.000000 0.000000 (E) ShowSymbol
+ 1.000000 0.000000 (D) ShowSymbol
+ 1.000000 0.000000 (B) ShowSymbol
+ 1.000000 0.000000 (-) ShowSymbol
+ 1.000000 0.000000 (*) ShowSymbol
+ 1.000000 0.022014 (S) ShowSymbol
+ 1.000000 0.044027 (C) ShowSymbol
+ 1.000000 1.155720 (A) ShowSymbol
+ 1.000000 2.542585 (G) ShowSymbol
+ 0.105378 0.105378 DrawErrorbar
+EndStack
+
+(15) StartStack
+ 0.994152 0.000000 (Z) ShowSymbol
+ 0.994152 0.000000 (Y) ShowSymbol
+ 0.994152 0.000000 (X) ShowSymbol
+ 0.994152 0.000000 (W) ShowSymbol
+ 0.994152 0.000000 (V) ShowSymbol
+ 0.994152 0.000000 (U) ShowSymbol
+ 0.994152 0.000000 (T) ShowSymbol
+ 0.994152 0.000000 (S) ShowSymbol
+ 0.994152 0.000000 (P) ShowSymbol
+ 0.994152 0.000000 (O) ShowSymbol
+ 0.994152 0.000000 (N) ShowSymbol
+ 0.994152 0.000000 (M) ShowSymbol
+ 0.994152 0.000000 (L) ShowSymbol
+ 0.994152 0.000000 (J) ShowSymbol
+ 0.994152 0.000000 (G) ShowSymbol
+ 0.994152 0.000000 (F) ShowSymbol
+ 0.994152 0.000000 (E) ShowSymbol
+ 0.994152 0.000000 (D) ShowSymbol
+ 0.994152 0.000000 (C) ShowSymbol
+ 0.994152 0.000000 (B) ShowSymbol
+ 0.994152 0.000000 (-) ShowSymbol
+ 0.994152 0.000000 (*) ShowSymbol
+ 0.994152 0.010377 (A) ShowSymbol
+ 0.994152 0.020754 (I) ShowSymbol
+ 0.994152 0.051884 (H) ShowSymbol
+ 0.994152 0.342438 (Q) ShowSymbol
+ 0.994152 0.591483 (R) ShowSymbol
+ 0.994152 2.511210 (K) ShowSymbol
+ 0.147597 0.147597 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.985380 0.000000 (Z) ShowSymbol
+ 0.985380 0.000000 (X) ShowSymbol
+ 0.985380 0.000000 (U) ShowSymbol
+ 0.985380 0.000000 (P) ShowSymbol
+ 0.985380 0.000000 (O) ShowSymbol
+ 0.985380 0.000000 (J) ShowSymbol
+ 0.985380 0.000000 (B) ShowSymbol
+ 0.985380 0.000000 (-) ShowSymbol
+ 0.985380 0.000000 (*) ShowSymbol
+ 0.985380 0.003774 (N) ShowSymbol
+ 0.985380 0.003774 (G) ShowSymbol
+ 0.985380 0.003774 (C) ShowSymbol
+ 0.985380 0.011322 (W) ShowSymbol
+ 0.985380 0.015096 (F) ShowSymbol
+ 0.985380 0.022644 (M) ShowSymbol
+ 0.985380 0.026418 (D) ShowSymbol
+ 0.985380 0.037740 (T) ShowSymbol
+ 0.985380 0.041514 (H) ShowSymbol
+ 0.985380 0.045288 (E) ShowSymbol
+ 0.985380 0.049062 (Y) ShowSymbol
+ 0.985380 0.056610 (Q) ShowSymbol
+ 0.985380 0.056610 (K) ShowSymbol
+ 0.985380 0.079253 (I) ShowSymbol
+ 0.985380 0.105671 (V) ShowSymbol
+ 0.985380 0.124541 (S) ShowSymbol
+ 0.985380 0.128315 (L) ShowSymbol
+ 0.985380 0.147185 (R) ShowSymbol
+ 0.985380 0.313240 (A) ShowSymbol
+ 0.129567 0.129567 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (G) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.016260 (W) ShowSymbol
+ 0.997076 0.016260 (N) ShowSymbol
+ 0.997076 0.016260 (M) ShowSymbol
+ 0.997076 0.016260 (I) ShowSymbol
+ 0.997076 0.027101 (H) ShowSymbol
+ 0.997076 0.032521 (K) ShowSymbol
+ 0.997076 0.032521 (E) ShowSymbol
+ 0.997076 0.043361 (C) ShowSymbol
+ 0.997076 0.048781 (S) ShowSymbol
+ 0.997076 0.054201 (Y) ShowSymbol
+ 0.997076 0.054201 (F) ShowSymbol
+ 0.997076 0.059621 (Q) ShowSymbol
+ 0.997076 0.075881 (R) ShowSymbol
+ 0.997076 0.108402 (V) ShowSymbol
+ 0.997076 0.113822 (T) ShowSymbol
+ 0.997076 0.531170 (A) ShowSymbol
+ 0.997076 0.601631 (L) ShowSymbol
+ 0.177082 0.177082 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (V) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (T) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (L) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (I) ShowSymbol
+ 0.997076 0.000000 (F) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.008271 (C) ShowSymbol
+ 0.997076 0.024814 (H) ShowSymbol
+ 0.997076 0.041357 (R) ShowSymbol
+ 0.997076 0.041357 (A) ShowSymbol
+ 0.997076 0.049628 (S) ShowSymbol
+ 0.997076 0.074442 (K) ShowSymbol
+ 0.997076 0.090984 (Q) ShowSymbol
+ 0.997076 0.132341 (E) ShowSymbol
+ 0.997076 0.165426 (D) ShowSymbol
+ 0.997076 0.488007 (N) ShowSymbol
+ 0.997076 1.703889 (G) ShowSymbol
+ 0.188647 0.188647 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.988304 0.000000 (Z) ShowSymbol
+ 0.988304 0.000000 (X) ShowSymbol
+ 0.988304 0.000000 (W) ShowSymbol
+ 0.988304 0.000000 (U) ShowSymbol
+ 0.988304 0.000000 (P) ShowSymbol
+ 0.988304 0.000000 (O) ShowSymbol
+ 0.988304 0.000000 (N) ShowSymbol
+ 0.988304 0.000000 (J) ShowSymbol
+ 0.988304 0.000000 (G) ShowSymbol
+ 0.988304 0.000000 (F) ShowSymbol
+ 0.988304 0.000000 (B) ShowSymbol
+ 0.988304 0.000000 (-) ShowSymbol
+ 0.988304 0.000000 (*) ShowSymbol
+ 0.988304 0.005380 (Y) ShowSymbol
+ 0.988304 0.005380 (H) ShowSymbol
+ 0.988304 0.005380 (D) ShowSymbol
+ 0.988304 0.010761 (C) ShowSymbol
+ 0.988304 0.016141 (S) ShowSymbol
+ 0.988304 0.043043 (T) ShowSymbol
+ 0.988304 0.053804 (I) ShowSymbol
+ 0.988304 0.075326 (E) ShowSymbol
+ 0.988304 0.107608 (A) ShowSymbol
+ 0.988304 0.112988 (R) ShowSymbol
+ 0.988304 0.118369 (M) ShowSymbol
+ 0.988304 0.118369 (K) ShowSymbol
+ 0.988304 0.188314 (Q) ShowSymbol
+ 0.988304 0.478856 (V) ShowSymbol
+ 0.988304 0.478856 (L) ShowSymbol
+ 0.138838 0.138838 DrawErrorbar
+EndStack
+
+(20) StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (V) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (T) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (L) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (I) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (F) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (C) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.012146 (G) ShowSymbol
+ 0.997076 0.024291 (R) ShowSymbol
+ 0.997076 0.024291 (N) ShowSymbol
+ 0.997076 0.024291 (A) ShowSymbol
+ 0.997076 0.412954 (S) ShowSymbol
+ 0.997076 3.643710 (P) ShowSymbol
+ 0.148216 0.148216 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.991228 0.000000 (Z) ShowSymbol
+ 0.991228 0.000000 (Y) ShowSymbol
+ 0.991228 0.000000 (X) ShowSymbol
+ 0.991228 0.000000 (W) ShowSymbol
+ 0.991228 0.000000 (U) ShowSymbol
+ 0.991228 0.000000 (S) ShowSymbol
+ 0.991228 0.000000 (R) ShowSymbol
+ 0.991228 0.000000 (Q) ShowSymbol
+ 0.991228 0.000000 (P) ShowSymbol
+ 0.991228 0.000000 (O) ShowSymbol
+ 0.991228 0.000000 (N) ShowSymbol
+ 0.991228 0.000000 (M) ShowSymbol
+ 0.991228 0.000000 (K) ShowSymbol
+ 0.991228 0.000000 (J) ShowSymbol
+ 0.991228 0.000000 (H) ShowSymbol
+ 0.991228 0.000000 (G) ShowSymbol
+ 0.991228 0.000000 (F) ShowSymbol
+ 0.991228 0.000000 (E) ShowSymbol
+ 0.991228 0.000000 (D) ShowSymbol
+ 0.991228 0.000000 (B) ShowSymbol
+ 0.991228 0.000000 (-) ShowSymbol
+ 0.991228 0.000000 (*) ShowSymbol
+ 0.991228 0.017882 (T) ShowSymbol
+ 0.991228 0.053645 (C) ShowSymbol
+ 0.991228 0.143054 (A) ShowSymbol
+ 0.991228 0.357635 (I) ShowSymbol
+ 0.991228 1.072906 (L) ShowSymbol
+ 0.991228 1.385837 (V) ShowSymbol
+ 0.121678 0.121678 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.988304 0.000000 (Z) ShowSymbol
+ 0.988304 0.000000 (X) ShowSymbol
+ 0.988304 0.000000 (U) ShowSymbol
+ 0.988304 0.000000 (P) ShowSymbol
+ 0.988304 0.000000 (O) ShowSymbol
+ 0.988304 0.000000 (M) ShowSymbol
+ 0.988304 0.000000 (K) ShowSymbol
+ 0.988304 0.000000 (J) ShowSymbol
+ 0.988304 0.000000 (I) ShowSymbol
+ 0.988304 0.000000 (D) ShowSymbol
+ 0.988304 0.000000 (B) ShowSymbol
+ 0.988304 0.000000 (-) ShowSymbol
+ 0.988304 0.000000 (*) ShowSymbol
+ 0.988304 0.006113 (Q) ShowSymbol
+ 0.988304 0.006113 (N) ShowSymbol
+ 0.988304 0.006113 (L) ShowSymbol
+ 0.988304 0.006113 (G) ShowSymbol
+ 0.988304 0.006113 (E) ShowSymbol
+ 0.988304 0.024454 (R) ShowSymbol
+ 0.988304 0.030567 (T) ShowSymbol
+ 0.988304 0.036680 (F) ShowSymbol
+ 0.988304 0.073361 (C) ShowSymbol
+ 0.988304 0.110041 (V) ShowSymbol
+ 0.988304 0.158948 (S) ShowSymbol
+ 0.988304 0.213969 (A) ShowSymbol
+ 0.988304 0.244536 (W) ShowSymbol
+ 0.988304 0.372917 (H) ShowSymbol
+ 0.988304 0.770287 (Y) ShowSymbol
+ 0.148564 0.148564 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.991228 0.000000 (Z) ShowSymbol
+ 0.991228 0.000000 (Y) ShowSymbol
+ 0.991228 0.000000 (X) ShowSymbol
+ 0.991228 0.000000 (W) ShowSymbol
+ 0.991228 0.000000 (U) ShowSymbol
+ 0.991228 0.000000 (P) ShowSymbol
+ 0.991228 0.000000 (O) ShowSymbol
+ 0.991228 0.000000 (J) ShowSymbol
+ 0.991228 0.000000 (F) ShowSymbol
+ 0.991228 0.000000 (C) ShowSymbol
+ 0.991228 0.000000 (B) ShowSymbol
+ 0.991228 0.000000 (-) ShowSymbol
+ 0.991228 0.000000 (*) ShowSymbol
+ 0.991228 0.005054 (M) ShowSymbol
+ 0.991228 0.005054 (I) ShowSymbol
+ 0.991228 0.010109 (G) ShowSymbol
+ 0.991228 0.015163 (L) ShowSymbol
+ 0.991228 0.020218 (H) ShowSymbol
+ 0.991228 0.025272 (S) ShowSymbol
+ 0.991228 0.035381 (N) ShowSymbol
+ 0.991228 0.050545 (V) ShowSymbol
+ 0.991228 0.080872 (T) ShowSymbol
+ 0.991228 0.136471 (D) ShowSymbol
+ 0.991228 0.136471 (A) ShowSymbol
+ 0.991228 0.247669 (K) ShowSymbol
+ 0.991228 0.257778 (R) ShowSymbol
+ 0.991228 0.283051 (E) ShowSymbol
+ 0.991228 0.404358 (Q) ShowSymbol
+ 0.122416 0.122416 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.994152 0.000000 (Z) ShowSymbol
+ 0.994152 0.000000 (X) ShowSymbol
+ 0.994152 0.000000 (U) ShowSymbol
+ 0.994152 0.000000 (S) ShowSymbol
+ 0.994152 0.000000 (Q) ShowSymbol
+ 0.994152 0.000000 (P) ShowSymbol
+ 0.994152 0.000000 (O) ShowSymbol
+ 0.994152 0.000000 (N) ShowSymbol
+ 0.994152 0.000000 (K) ShowSymbol
+ 0.994152 0.000000 (J) ShowSymbol
+ 0.994152 0.000000 (H) ShowSymbol
+ 0.994152 0.000000 (G) ShowSymbol
+ 0.994152 0.000000 (E) ShowSymbol
+ 0.994152 0.000000 (D) ShowSymbol
+ 0.994152 0.000000 (C) ShowSymbol
+ 0.994152 0.000000 (B) ShowSymbol
+ 0.994152 0.000000 (-) ShowSymbol
+ 0.994152 0.000000 (*) ShowSymbol
+ 0.994152 0.010755 (T) ShowSymbol
+ 0.994152 0.010755 (R) ShowSymbol
+ 0.994152 0.032264 (W) ShowSymbol
+ 0.994152 0.053774 (Y) ShowSymbol
+ 0.994152 0.064529 (I) ShowSymbol
+ 0.994152 0.075283 (V) ShowSymbol
+ 0.994152 0.075283 (F) ShowSymbol
+ 0.994152 0.086038 (A) ShowSymbol
+ 0.994152 0.236605 (M) ShowSymbol
+ 0.994152 3.011337 (L) ShowSymbol
+ 0.203508 0.203508 DrawErrorbar
+EndStack
+
+(25) StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (T) ShowSymbol
+ 0.997076 0.000000 (S) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (G) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (C) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.010041 (P) ShowSymbol
+ 0.997076 0.020082 (Y) ShowSymbol
+ 0.997076 0.030123 (V) ShowSymbol
+ 0.997076 0.050204 (A) ShowSymbol
+ 0.997076 0.100409 (W) ShowSymbol
+ 0.997076 0.160654 (M) ShowSymbol
+ 0.997076 0.170695 (F) ShowSymbol
+ 0.997076 0.271103 (I) ShowSymbol
+ 0.997076 2.610623 (L) ShowSymbol
+ 0.194567 0.194567 DrawErrorbar
+EndStack
+
+() StartStack
+ 0.997076 0.000000 (Z) ShowSymbol
+ 0.997076 0.000000 (Y) ShowSymbol
+ 0.997076 0.000000 (X) ShowSymbol
+ 0.997076 0.000000 (W) ShowSymbol
+ 0.997076 0.000000 (V) ShowSymbol
+ 0.997076 0.000000 (U) ShowSymbol
+ 0.997076 0.000000 (R) ShowSymbol
+ 0.997076 0.000000 (Q) ShowSymbol
+ 0.997076 0.000000 (P) ShowSymbol
+ 0.997076 0.000000 (O) ShowSymbol
+ 0.997076 0.000000 (N) ShowSymbol
+ 0.997076 0.000000 (M) ShowSymbol
+ 0.997076 0.000000 (L) ShowSymbol
+ 0.997076 0.000000 (K) ShowSymbol
+ 0.997076 0.000000 (J) ShowSymbol
+ 0.997076 0.000000 (I) ShowSymbol
+ 0.997076 0.000000 (H) ShowSymbol
+ 0.997076 0.000000 (F) ShowSymbol
+ 0.997076 0.000000 (E) ShowSymbol
+ 0.997076 0.000000 (D) ShowSymbol
+ 0.997076 0.000000 (C) ShowSymbol
+ 0.997076 0.000000 (B) ShowSymbol
+ 0.997076 0.000000 (A) ShowSymbol
+ 0.997076 0.000000 (-) ShowSymbol
+ 0.997076 0.000000 (*) ShowSymbol
+ 0.997076 0.027440 (T) ShowSymbol
+ 0.997076 0.027440 (S) ShowSymbol
+ 0.997076 4.623628 (G) ShowSymbol
+ 0.095015 0.095015 DrawErrorbar
+EndStack
+
+EndLine
+
+EndLogo
+
+
+%%EOF
+
